@@ -18,13 +18,19 @@ module.exports = function (app, db) {
         if (req.headers) {
           var ip = req.ip || req.connection.remoteAddress;
           console.log(ip);
+          if (ip.indexOf(':') !== -1) {
+            ip = ip.split(':')[3];
+          }
+
+
           var language = req.headers['accept-language'].split(',')[0];
           var os = req.headers['user-agent'];
           var start = os.indexOf('(');
           var end = os.indexOf(')');
           var subStr = os.slice(start + 1, end);
 
-          headerObj.ip = ip.split(':')[3];
+          // headerObj.ip = ip.split(':')[3];
+          headerObj.ip = ip;
           headerObj.language = language;
           headerObj.os = subStr;
 
