@@ -17,6 +17,7 @@ module.exports = function (app, db) {
 
         if (req.headers) {
           var ip = req.ip || req.connection.remoteAddress;
+          console.log(ip);
           var language = req.headers['accept-language'].split(',')[0];
           var os = req.headers['user-agent'];
           var start = os.indexOf('(');
